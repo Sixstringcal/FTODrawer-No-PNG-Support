@@ -88,6 +88,7 @@ public class MainMenu extends JFrame {
                 fto.doMoves(a);
                 myWriter.write(Main.getSVG(fto.getState()));
             }
+            myWriter.flush();
             myWriter.close();
         } catch (IOException ex) {
             ex.printStackTrace();
