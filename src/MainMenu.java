@@ -5,10 +5,13 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JFileChooser;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.nio.file.Paths;
 
 
@@ -65,37 +68,47 @@ public class MainMenu extends JFrame {
             }
         });
         pack();
-        setSize(400,700);
+        setSize(400, 700);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
-    public void makeFile(String path){
-        try {
-            FileWriter myWriter = new FileWriter(path + ".svg");
-            if(drawScrambleButton.isSelected()){
-                String a = scrambleTextBox.getText();
-                fto = new FTO();
-                if(!a.equals("")) {
+    public void makeFile(String path) {
+        JFileChooser jFileChooser = new JFileChooser();
+        jFileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        FileFilter filter = new FileNameExtensionFilter("Images ", "svg");
+        jFileChooser.setFileFilter(filter);
+        int result = jFileChooser.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+
+
+            try {
+                FileWriter myWriter = new FileWriter(jFileChooser.getSelectedFile().toString() + ".svg");
+                System.out.print(jFileChooser.getSelectedFile().toString() + ".svg");
+                if (drawScrambleButton.isSelected()) {
+                    String a = scrambleTextBox.getText();
+                    fto = new FTO();
+                    if (!a.equals("")) {
+                        fto.doMoves(a);
+                    }
+                    myWriter.write(Main.drawScramble(fto.getState()));
+                } else {
+                    String a = scrambleTextBox.getText();
+                    fto = new FTO();
                     fto.doMoves(a);
+                    myWriter.write(Main.getSVG(fto.getState()));
                 }
-                myWriter.write(Main.drawScramble(fto.getState()));
+                myWriter.flush();
+                myWriter.close();
+            } catch (IOException ex) {
+                System.out.println("oof");
+                ex.printStackTrace();
             }
-            else {
-                String a = scrambleTextBox.getText();
-                fto = new FTO();
-                fto.doMoves(a);
-                myWriter.write(Main.getSVG(fto.getState()));
-            }
-            myWriter.flush();
-            myWriter.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
         }
     }
 
-    public void liveUpdate(){
+    public void liveUpdate() {
 
     }
 }
