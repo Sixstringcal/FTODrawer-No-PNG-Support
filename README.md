@@ -1,4 +1,7 @@
 # FTODrawer
+
+L3T image pattern made by Raúl Low.
+
 This is an application to draw the states on an FTO (Face Turning Octahedron).
 Currently, this is a Simple GUI Java application that will display the U layer and the relevant information for the Last 3 Triples step as well as a full scramble image.
 
