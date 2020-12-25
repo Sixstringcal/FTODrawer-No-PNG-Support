@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="FTODrawer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/FTODrawer_jar</output-path>
+    <root id="archive" name="FTODrawer.jar">
+      <element id="module-output" name="FTODrawer-No-PNG-Support22" />
+    </root>
+  </artifact>
+</component>

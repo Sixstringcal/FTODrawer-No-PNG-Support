@@ -95,28 +95,6 @@ public class MainMenu extends JFrame {
     }
 
     public void liveUpdate(){
-        try {
-            String a = scrambleTextBox.getText();
-            fto = new FTO();
-            if(!a.equals("")) {
-                fto.doMoves(a);
 
-            }
-            makeFile("liveImages/liveImage");
-            String svgInput = Paths.get("liveImages/liveImage.svg").toUri().toURL().toString();
-            //TranscoderInput transcoderInput = new TranscoderInput(svgInput);
-            OutputStream outputStream = new FileOutputStream("liveImages/liveImage.png");
-            //TranscoderOutput transcoderOutput = new TranscoderOutput(outputStream);
-            //PNGTranscoder pngTranscoder = new PNGTranscoder();
-            //pngTranscoder.transcode(transcoderInput, transcoderOutput);
-            outputStream.flush();
-            outputStream.close();
-
-            ImageIcon icon = new ImageIcon("liveImages/liveImage.png");
-            icon.getImage().flush();
-            scrambleImageLabel.setIcon(icon);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
     }
 }
