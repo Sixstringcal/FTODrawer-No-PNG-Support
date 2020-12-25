@@ -21,10 +21,8 @@ public class MainMenu extends JFrame {
     private JPanel panel;
     private JLabel scrambleLabel;
     private JTextArea scrambleTextBox;
-    private JLabel saveLabel;
     private JTextField fileNameTextBox;
     private JButton saveButton;
-    private JLabel svgEndingLabel;
     private JLabel scrambleImageLabel;
     private FTO fto;
 
@@ -64,7 +62,7 @@ public class MainMenu extends JFrame {
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                makeFile("" + fileNameTextBox.getText());
+                makeFile("");
             }
         });
         pack();
